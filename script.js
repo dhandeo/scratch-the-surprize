@@ -4,7 +4,19 @@ var c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
+c.fillStyle = "rgba(255, 255, 255, 1.)";
+c.globalAlpha = 1.0;
 c.fillRect(0,0,canvas.width, canvas.height);
+
+var imageObj = new Image();
+
+imageObj.onload = function() {
+	c.drawImage(imageObj, 0, 0, innerWidth, innerHeight);
+	console.log("loaded");
+	c.globalCompositeOperation = "destination-out";
+};
+imageObj.src = 'foreground.png';
+
 
 var paintColors = {};
 var mouseId = 'mouse';
@@ -36,12 +48,14 @@ function addMouseListeners(){
 
 function setRandomPaintColor(id){
   function rand255(){ return Math.floor(Math.random()*255);}
-  paintColors[id] = 'rgb('+rand255()+','+rand255()+','+rand255()+')';
+  paintColors[id] = 'rgba('+rand255()+','+rand255()+','+rand255() + ', 1.0)';
 }
 
 function drawCircle(x, y){
   c.beginPath();
   c.arc(x, y, 20, 0, 2 * Math.PI);
+  c.globalCompositeOperation = "destination-out";
+  c.fillStyle = "rgba(255, 255, 255, 0.5)";
   c.fill();
 }
 

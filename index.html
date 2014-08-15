@@ -2,11 +2,22 @@
 <html>
 <head>
   <title>Multi-touch Fingerpainting</title>
+	<style> 
+.over {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+	</style>
+
 </head>
 <!-- the inline CSS on the body ("margin: 0px;") removes the extra space
      around the canvas, making it flush with the edge of the page -->
 <body style="margin: 0px;">
-  <canvas id="canvas"/>
+  <img class="over" src="background.png"> </img>
+  <canvas class = "over" z-index="100" id="canvas"/>
   <script src="script.js"></script>
 </body>
 </html>
